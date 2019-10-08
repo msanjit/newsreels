@@ -1,0 +1,13 @@
+When it comes to saving space on your   Mac computer, there  are many things you can do – empty the trash, delete app  installers, get rid of duplicate files, and more. 
+  You can also reduce the file size of PDF documents in order to  make them more compact, and take up less space on your   Mac.
+  However, it’s important to note that doing so may also decrease  the quality of the original PDF.
+  If you need a high-quality PDF, for a presentation or work  assignment, you may be better off using another space-saving  method, like saving it to cloud-based backup system or an  external hard drive.
+  But if you decide it’s the right way to go, here’s what you’ll  need to do in order to reduce the file size of a PDF on your    Mac, via the Preview app.
+  As long as you know which file you want to reduce, this should be  a quick and easy process:
+ 1. Open the PDF – if Preview isn’t your default  app, right click the PDF, then select “Open with” followed by  “Preview.”
+ 
+ 2. Once the file is open, go up to the top  toolbar and select “File” and then “Export.”
+ 
+ 3. You’ll see a pop-up window appear over the  top-middle section of the PDF – click the drop-down menu next to  “Quartz Filter” and select “Reduce File Size.”
+ 
+ 4. Click “Save.”
