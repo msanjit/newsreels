@@ -1,0 +1,8 @@
+Spotify on Monday updated its app with a new option that lets you play music from Spotify using Siri.
+It’s thanks to Apple’s decision to finally let Siri open third-party music apps in iOS 13, which launched for iPhones in September. Other services, like Pandora, already offer the support.
+Siri hasn’t always been open to third party music services, which had been one of Spotify’s antitrust arguments against Apple in a complaint filed with the European Commission. Ultimately, the change is good for consumers, who can now use Siri to play music from more services.
+It’s easy to set it up. Just do this:
+Your music will start to play.
+Now, when you want to play a specific artist or playlist, just ask Siri to launch it and make sure you tell Siri to play it using “Spotify.” If you don’t say Spotify and simply ask it to play music, it’ll still default to trying to launch the song or playlist in Apple Music.
+If you use Spotify, you may also want to download the new Apple TV app, which is now available.
+Follow @CNBCtech on Twitter for the latest tech product news.

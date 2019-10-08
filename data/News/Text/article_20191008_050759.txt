@@ -1,0 +1,10 @@
+Waymo, the self-driving car company owned by Alphabet, is heading to Los Angeles with its 3-D mapping technology to determine if it can navigate traffic congestion in the second-biggest U.S. city.
+ 
+The company said on Monday that it will deploy a small fleet of its Chrysler minivans in LA. Mapping represents the preliminary steps in testing out a location before potentially launching its services, which Waymo has no immediate plans to do.
+“Angelenos might catch a glimpse of Waymo’s cars on the streets of LA,” the company tweeted. “Waymo vehicles will be in town exploring how our tech might fit into LA’s dynamic transportation environment and complement the City’s innovative approach to transportation solutions.”
+
+Waymo is rapidly expanding into more cities in states including Florida, Michigan and California in an effort to test rigorous driving conditions. The process of commercializing its autonomous technology is taking longer than many industry experts anticipated, leading analysts at Morgan Stanley to slash their valuation of the company last week by 40%. In the Phoenix area, the only place where Waymo operates a live fleet fleet of vehicles, it’s still largely reliant on human safety drivers.
+In mapping LA, Waymo will analyze details ranging from the height of a curb and various road types to  lane merges and shared turn lanes and combine that with traffic control information like speed limits.
+“Congestion is a totally different thing and we’re really excited to see how that congestion kind of manifests itself,” David Margines, Waymo’s product manager for mapping,  told Forbes. He noted that the technology will help determine how traffic patterns and driving habits are different in LA. than in other cities. 
+WATCH: This Arizona town is overrun with self-driving cars
+Follow @CNBCtech on Twitter for the latest tech industry news.
