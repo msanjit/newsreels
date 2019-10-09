@@ -1,0 +1,17 @@
+Wells Fargo’s ATMs are getting an upgrade. The bank announced today that more than 40 percent – or over 5,000 of its ATMs – will now allow customers to perform transactions without having to pull out their bank card. Instead, users can take advantage of NFC – aka the “tap and pay” technology that powers mobile wallet systems like Apple Pay, Android Pay, and Samsung Pay, as well as Wells Fargo’s own Wallet for Android app.
+
+The bank had previously announced its plans to allow contactless ATM transactions earlier this year, but it initially rolled out one-time access code technology to allow for ATM access without a physical bank card. This worked in conjunction with the Wells Fargo Mobile Banking app, making Wells Fargo the first large U.S. bank to have a fleet of card-free ATMs, the company notes today.
+
+That access code technology proved popular enough after its introduction this spring. Wells Fargo says it has seen nearly 3 million card-free transactions to date, thanks to its addition.
+
+Now, customers can initiate an NFC-based ATM transaction instead by holding their phone or a wearable device (like an Apple Watch) near the ATM terminal.
+
+The NFC-ready ATMs will have a “contactless symbol” decal on the front, so you’ll know if the feature is supported. Then, customers will enter their PIN code as usual and complete their transaction.
+
+With the launch of NFC-enabled transactions, the number of card-free transactions is likely to grow by quite a bit. Consumers today are already familiar with how tap-and-pay works thanks to NFC-based point-of-sale systems at checkout. Plus, mobile payments adoption may have also gotten a boost in the wake of the switchover to chip-and-PIN credit cards in the U.S., where these new chip card transactions often take much longer to process than the traditional swipe ever did. That makes mobile payments even more appealing.
+
+Because mobile payments is already understood by many of Wells Fargo’s over 20 million mobile banking and mobile wallet customers, few will need much education as to how to take advantage of the NFC-enabled ATMs.
+
+The bank says it plans to upgrade the remaining 8,000 or so ATMs by next year to support NFC transactions.
+
+Wells Fargo isn’t the only bank prepping its systems for the contactless future. Bank of America also last year began offering NFC transactions at its ATMs, and Chase announced its plans here as well.
