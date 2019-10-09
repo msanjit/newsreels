@@ -1,0 +1,13 @@
+Despite all the capabilities of an   Apple Watch, it’s not very good at playing video. 
+  There’s no YouTube  app for the watch, for example, and for the most part, you can’t  watch videos on your wrist. 
+  But there is one significant exception – you can play videos  embedded in SMS and iMessages.
+  Here’s how to do it.  
+ 1. To watch a video on your Apple Watch, it must  be a video file that’s embedded in a text message (SMS or  iMessage). It can’t be a link (like a YouTube URL), and it can  only be sent via a message. You can receive a message from  someone else or you can send a video in a text message to  yourself from your iPhone. 
+ 2. When you receive the message, tap the video  thumbnail. The video should start to play.
+ 
+ 3. Tap the screen to pause the video. Tap again  to resume playback. 
+ 
+ 4. You can adjust the volume with the Digital  Crown.
+ 5. When you’re finished, tap “Done.”
+  You can return to the message in your Messages app to watch the  video again later. 
+  Unfortunately, you can’t play video from a link on your   Apple Watch. If you try, you’ll generally get a message that  says your browser does not currently recognize the video file.
