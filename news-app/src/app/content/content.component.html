@@ -1,0 +1,136 @@
+<!--
+    <p>content works!</p>
+-->
+<br/>
+
+    <mat-card>News Articles
+                <button class="button" (click)="fileInput.click()">
+                    <span class="span"><i class="material-icons span">publish</i>Upload</span>
+                    <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+                </button>
+    </mat-card>
+
+<br/>
+
+<div class="wrapper">
+<div id="one" class="accordion"  >
+        <mat-accordion
+         #accordion="matAccordion"
+        >
+          <mat-expansion-panel  
+          [expanded]="panel.isExpanded"
+
+          *ngFor="let panel of accordionList"
+          #mapanel="matExpansionPanel"
+          >
+            <mat-expansion-panel-header>
+
+              <mat-panel-title>
+                <b>{{panel.title}}</b>
+              </mat-panel-title>
+<!--
+              <mat-panel-description>                
+                {{panel.isExpanded ? 'open' : 'closed'}}
+              </mat-panel-description>
+-->
+            </mat-expansion-panel-header> 
+
+            {{panel.description}}
+            
+          </mat-expansion-panel>
+
+        </mat-accordion>
+</div>
+<div id="two" class="right-panel"> 
+    <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>view_comfy</mat-icon>
+              Organization
+            </mat-panel-title>
+            <mat-panel-description>
+              
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+            <mat-list role="list">
+                <mat-list-item role="listitem">UBS</mat-list-item>
+                <mat-list-item role="listitem">ICBC</mat-list-item>
+                <mat-list-item role="listitem">HSBC</mat-list-item>
+            </mat-list>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                    <mat-icon>apartment</mat-icon>
+              Industry
+            </mat-panel-title>
+            <mat-panel-description>
+                
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+                <mat-list-item role="listitem">Finance</mat-list-item>
+                <mat-list-item role="listitem">Technology</mat-list-item>
+                <mat-list-item role="listitem">Research</mat-list-item>
+            </mat-list>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                    <mat-icon>text_fields</mat-icon>
+                Topics
+              </mat-panel-title>
+              <mat-panel-description>
+                
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+                    <mat-list-item role="listitem">Budget</mat-list-item>
+                    <mat-list-item role="listitem">Education</mat-list-item>
+                    <mat-list-item role="listitem">Health</mat-list-item>
+                </mat-list>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                    <mat-icon>group</mat-icon>
+                People
+              </mat-panel-title>
+              <mat-panel-description>
+                
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+                    <mat-list-item role="listitem">James P. Gorman</mat-list-item>
+                    <mat-list-item role="listitem">Sundar Pichai</mat-list-item>
+                    <mat-list-item role="listitem">Satya Nadella</mat-list-item>
+                </mat-list>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                    <mat-icon>my_location</mat-icon>
+                Location
+              </mat-panel-title>
+              <mat-panel-description>
+                
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+                    <mat-list-item role="listitem">India</mat-list-item>
+                    <mat-list-item role="listitem">US</mat-list-item>
+                    <mat-list-item role="listitem">Germany</mat-list-item>
+                </mat-list>
+          </mat-expansion-panel>
+
+      </mat-accordion> 
+
+</div>
+
+</div>

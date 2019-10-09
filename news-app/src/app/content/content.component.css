@@ -1,0 +1,33 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+div.accordion {
+    width: 75%;
+  }
+
+.button {
+    vertical-align: middle;
+}
+.span{
+    color: white;
+   
+}  
+
+div.wrapper {
+    /*width: 80%;
+    height: 200px;
+    background: aqua;*/
+    margin: auto;
+    padding: 10px;
+}
+div#one {
+    width: 75%;
+    /*height: 200px;
+    background: red;*/
+    float: left;
+}
+div#two {
+    margin-left: 76%;
+    /*height: 200px;
+    background: black;*/
+    border-style: groove;
+}
