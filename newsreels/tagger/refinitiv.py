@@ -29,9 +29,9 @@ import json
 def tag(url=None,api_key=None,content=None,headType="text/raw"):   
     # Open Calais/hosted Intelligent Tagging
     token = api_key
-    contentText=content.decode('utf8')
+    contentText=content
     #url = "https://api.thomsonreuters.com/permid/calais"
-    payload = contentText.encode('utf8')
+    payload = contentText.encode('utf-8')
     #Provide the Output format Desired -- Mandatory Headers
     headers = {
         'Content-Type': headType,
