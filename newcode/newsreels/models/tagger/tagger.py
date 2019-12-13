@@ -1,0 +1,168 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+
+
+
+import sys
+import json
+import requests
+sys.path.append("")
+import dslib
+import dslib.setup()
+dslib.setup.load_env()
+import ms.version
+certify - Dependency for requests.
+ms.version.addpkg("certifi","2019.6.16")
+import pandas
+import perm_id
+
+
+
+
+
+#Use the Refinitiv API to intelligently tag news articles.
+def tag_refinitiv(content="", url = None, api_key = None, proxies = None):
+    #set proxies, if None
+    proxies = {"http" : "http://proxy-app.ms.com:8080", "https" : "https://proxy-app.ms.com:8080"} if proxies is None else proxies
+    #URL, set if None.
+    url = "https://api.thomsonreuters.com/permid/calais" if url is None else url
+    #API key, set if None
+    api_key = "1tuJRbkEEOJ5SyERevb9pk5oDDVjQ4AQ" if api_key is None else api_key    
+    #Set header
+    headers = {'Content-Type': "text/raw", "X-AG-Access-Token": api_key, 'outputformat': "application/json"}
+    #Define payload
+    payload = content.encode('utf-8')
+    #Get the response from Refinitiv API
+    trit_response = requests.request("POST", url, data=payload, headers=headers)#, proxies=proxies)
+    #convert the response to a json object.
+    trit_json_response = trit_response.json()
+#     print ("trit_json_response",trit_json_response)
+    #Dictionary to be populated, based on tags derived from Refinitiv tagger
+    edict = {"_typeGroup": [], "name": [], "score": [], "confidencelevel": [], "_type": [], "relevence": [],
+            "company_1": [], "company_2": [], "company_acquirer":[], "comapany_beingacquired":[],
+            "organizationtype":[], "position":[], "status":[], "speaker":[]}#, "permid":[], "permid_detail":[]}
+    #iterating overall entities.
+    for entity in trit_json_response:
+         #store the entity data.
+        j_entity = trit_json_response[entity]
+        #get and store _typeGroup
+        edict["_typeGroup"].append(j_entity["_typeGroup"] if "_typeGroup" in j_entity.keys() else "")
+        edict["name"].append(j_entity["name"] if "name" in j_entity.keys() else "")
+        edict["score"].append(j_entity["score"] if "score" in j_entity.keys() else "")
+        edict["confidencelevel"].append(j_entity["confidencelevel"] if "confidencelevel" in j_entity.keys() else "")
+        edict["_type"].append(j_entity["_type"] if "_type" in j_entity.keys() else "")
+        edict["relevence"].append(j_entity["relevence"] if "relevence" in j_entity.keys() else "")
+        edict["organizationtype"].append(j_entity["organizationtype"] if "organizationtype" in j_entity.keys() else "")
+        edict["position"].append(j_entity["position"] if "position" in j_entity.keys() else "")
+        edict["status"].append(j_entity["status"] if "status" in j_entity.keys() else "")
+        permid = j_entity["resolutions"][0]['id'] if "_type" in j_entity.keys() and "resolutions" in j_entity.keys() and j_entity["_type"]
+            in ['Company','Organization'] and 'id' in j_entity["resolution"][0] else ""
+        edict["permid"].append(permid)
+        permid_detail = {}
+        if permid:
+            permid_detail_dict, permid_detail = perm_id.parse_permid_entity(permid)        
+        edict["permid_detail"].append(permid_detail)
+        
+        speaker = j_entity["speaker"] if "speaker" in j_entity.keys() else []
+        speaker = speaker if type(speaker) is list else [speaker]
+        speaker = [trit_json_response[c]["name"] for c in speaker]
+        edict["speaker"].append(speaker[0] if len(speaker) >= 1 else "")
+                
+        company_acquirer = j_entity["company_acquirer"] if "company_acquirer" in j_entity.keys() else []
+        company_acquirer = company_acquirer if type(company_acquirer) is list else [company_acquirer]
+        company_acquirer = [trit_json_response[c]["name"] for c in company_acquirer]
+        edict["company_acquirer"].append(company_acquirer[0] if len(company_acquirer) >= 1 else "")
+        
+        comapany_beingacquired = j_entity["comapany_beingacquired"] if "comapany_beingacquired" in j_entity.keys() else []
+        comapany_beingacquired = comapany_beingacquired if type(comapany_beingacquired) is list else [comapany_beingacquired]
+        comapany_beingacquired = [trit_json_response[c]["name"] for c in comapany_beingacquired]
+        edict["comapany_beingacquired"].append(comapany_beingacquired[0] if len(comapany_beingacquired) >= 1 else "")
+        
+        comapany = j_entity["comapany"] if "comapany" in j_entity.keys() else []
+        comapany = comapany if type(comapany) is list else [comapany]
+        comapany_names = [trit_json_response[c]["name"] for c in comapany]
+        edict["company_1"].append(comapany_names[0] if len(comapany_names) >= 1 else "") 
+        edict["company_2"].append(comapany_names[1] if len(comapany_names) >= 2 else "") 
+    
+    return pandas.DataFrame.from_dict(edict)
+
+
+#Get companies from refinitiv response.
+#Input - A dataframe with tags generated by Refinitiv API.
+#Returns - A dataframe filters on companies and / or organizations.
+def parse_tag_refinitiv_company_organization(tags_df):
+    #Return the tags data frame filtered on companies.
+    return tags_df[((tags_df["_type"].str.strip().str.lower() == 'company') | (tags_df["_type"].str.strip().str.lower() == 'organization')) 
+                     & (tags_df["_typeGroup"].str.strip().str.lower() == 'entities')]
+                    
+#Get people and location from refinitiv response.
+#Input - A dataframe with tags generated by Refinitiv API.
+#Returns - A dataframe filters on people and / or locations.
+def parse_tag_refinitiv_person_location(tags_df):
+    #Return the tags data frame filtered on companies.
+    return tags_df[((tags_df["_type"].str.strip().str.lower() == 'person') | (tags_df["_type"].str.strip().str.lower() == 'country') |
+                    (tags_df["_type"].str.strip().str.lower() == 'state') | (tags_df["_type"].str.strip().str.lower() == 'city')) &
+                     (tags_df["_typeGroup"].str.strip().str.lower() == 'entities')]
+                     
+#Get topic from refinitiv response.
+#Input - A dataframe with tags generated by Refinitiv API.
+#Returns - A dataframe filters on topics.
+def parse_tag_refinitiv_topic(tags_df):
+    #Return the tags data frame filtered on topics.
+    return tags_df[(tags_df["_typeGroup"].str.strip().str.lower() == 'topics')]   
+                     
+                                                                                     
+                                                                                     
+#Get industry from refinitiv response.
+#Input - A dataframe with tags generated by Refinitiv API.
+#Returns - A dataframe filters on industry.
+def parse_tag_refinitiv_industry(tags_df):
+    #Return the tags data frame filtered on industry.
+    return tags_df[(tags_df["_typeGroup"].str.strip().str.lower() == 'entities') &  (tags_df["_type"].str.strip().str.lower() == 'industryterm')]                    
+                     
+                     
+#Get person from refinitiv response.
+#Input - A dataframe with tags generated by Refinitiv API.
+#Returns - A dataframe filters on person.
+def parse_tag_refinitiv_person(tags_df):
+    #Return the tags data frame filtered on person.
+    return tags_df[(tags_df["_typeGroup"].str.strip().str.lower() == 'entities') &  (tags_df["_type"].str.strip().str.lower() == 'person')]                    
+
+                                                                                     
+                                                                                     
+#Get M&A from refinitiv response.
+#Input - A dataframe with tags generated by Refinitiv API.
+#Returns - A dataframe filters on Merger and Acquisitions.
+def parse_tag_refinitiv_mna(tags_df):
+    #Return the tags data frame filtered on person.
+    return tags_df[(tags_df["_typeGroup"].str.strip().str.lower() == 'relations') &  
+                    ((tags_df["_type"].str.strip().str.lower() == 'acquisition') | (tags_df["_type"].str.strip().str.lower() == 'merger'))]                    
+
+
+
+                        
+#Get topic from refinitiv response.
+#Input - A dataframe with tags generated by Refinitiv API.
+#Returns - A dataframe filters on topics.
+def parse_tag_refinitiv_social_tags(tags_df):
+    #Return the tags data frame filtered on topics.
+    return tags_df[(tags_df["_typeGroup"].str.strip().str.lower() == 'socialtag')]           
+        
+        
+
+
+
+
+if __name__ == "__main__":
+    result = tag_refinitiv('''
+
+
+A Brief History of Doom examines a series of major financial crises over the past 200 years in the United States, Great Britain, Germany, France, Japan, and China—including the Great Depression and the economic meltdown of 2008.
+
+Richard Vague demonstrates that the over-accumulation of private debt does a better job than any other variable of explaining and predicting financial crises. In a series of clear and gripping chapters, he shows that in each case the rapid growth of loans produced widespread overcapacity, which then led to the spread of bad loans and bank failures. This cycle, according to Vague, is the essence of financial crises and the script they invariably follow.
+
+"The stakes are high for preventing prolonged economic downturns, and the impotence of the public sector is devastating to the reputation of experts and governance, not only in the financial sector but across every division of government. The demoralization on both the left and right after the Great Financial Crisis remains a major contributor to the politics of today. Vague challenges us to face up to these costs." -- Robert Johnson, Institute for New Economic Thinking
+''')
+    
+
